@@ -18,7 +18,7 @@
           <el-menu-item>游戏</el-menu-item>
           <el-submenu>
             <template slot="title">个人</template>
-            <el-menu-item>退出</el-menu-item>
+            <el-menu-item @click="logout">退出</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-header>
@@ -36,27 +36,23 @@ export default {
   },
   methods: {
     //退出
-    // logout() {
-    //   this.$confirm("此操作将退出首页, 是否继续?", "提示", {
-    //     confirmButtonText: "确定",
-    //     cancelButtonText: "取消",
-    //     type: "warning"
-    //   })
-    //     .then(() => {
-    //       this.$axios
-    //         .post("http://ceshi5.dishait.cn/admin/logout")
-    //         .then(res => {
-    //           localStorage.removeItem("token");
-    //           this.$router.push("/login");
-    //         });
-    //     })
-    //     .catch(() => {
-    //       this.$message({
-    //         type: "info",
-    //         message: "已取消退出"
-    //       });
-    //     });
-    // }
+    logout() {
+      this.$confirm("此操作将退出首页, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          window.localStorage.removeItem("token");
+          this.$router.push("/login");
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消退出"
+          });
+        });
+    }
   }
 };
 </script>
