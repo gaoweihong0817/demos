@@ -45,6 +45,7 @@ export default {
         .then(() => {
           window.localStorage.removeItem("token");
           this.$router.push("/login");
+          this.$message.success("退出成功");
         })
         .catch(() => {
           this.$message({

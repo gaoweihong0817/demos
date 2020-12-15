@@ -44,6 +44,13 @@ export default {
   methods: {
     //登录
     Login() {
+      if (
+        this.ruleForm.username !== "admin" ||
+        this.ruleForm.password !== "admin"
+      ) {
+        this.$message.error("登录失败");
+        return;
+      }
       var obj = {
         username: this.ruleForm.username,
         password: this.ruleForm.password
@@ -54,10 +61,10 @@ export default {
           console.log(res);
           if (res.status == 200) {
             localStorage.setItem("token", res.data.data.token);
-            this.$message.success(res.data.msg);
+            this.$message.success("登录成功");
             this.$router.push("/index");
           } else {
-            this.$message.error(res.data.msg);
+            this.$message.error("登录失败");
           }
         });
     }
